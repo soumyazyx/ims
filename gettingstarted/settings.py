@@ -57,7 +57,7 @@ ROOT_URLCONF = "gettingstarted.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -70,6 +70,7 @@ TEMPLATES = [
     }
 ]
 
+
 WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
 
@@ -78,8 +79,12 @@ WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE" : "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3")
+        "HOST": "ec2-3-229-210-93.compute-1.amazonaws.com",
+        "NAME": "d19ge5itd4ds2i",
+        "USER": "yxnyqvponovxxq",
+        "PORT": "5432",
+        "PASSWORD": "8f8045c50a933a6980ef4f0d0f9e78177799359468e0d2faae34d63c4d654943",
+        "ENGINE": "django.db.backends.postgresql"
     }
 }
 
