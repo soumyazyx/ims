@@ -33,6 +33,12 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # Auth
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -40,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "hello",
+    "core"
 ]
 
 MIDDLEWARE = [
@@ -69,7 +76,6 @@ TEMPLATES = [
         },
     }
 ]
-
 
 WSGI_APPLICATION = "gettingstarted.wsgi.application"
 
@@ -122,3 +128,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = "/static/"
 
 django_heroku.settings(locals())
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static_in_env')]
+
+# Auth
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID = 1
