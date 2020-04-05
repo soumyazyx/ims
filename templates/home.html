@@ -3,7 +3,7 @@
 {% block content %}
   <main>
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
+      {% comment %} <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
         <span class="navbar-brand">Categories:</span>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
           aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,7 +42,7 @@
         <!-- Collapsible content -->
 
       </nav>
-      <!--/.Navbar-->
+      <!--/.Navbar--> {% endcomment %}
 
       <!--Section: Products v.3-->
       <section class="text-center mb-4">
@@ -53,42 +53,53 @@
           {% for item in object_list %}
           <div class="col-lg-3 col-md-6 mb-4">
             <div class="card">
-              <div class="view overlay">
-                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15.jpg" class="card-img-top"
-                  alt="">
-                <a>
-                  <div class="mask rgba-white-slight"></div>
-                </a>
-              </div>
-              <!--Card image-->
-
+              
               <!--Card content-->
               <div class="card-body text-center">
                 <!--Category & Title-->
                 <a href="{{ item.get_absolute_url }}" class="grey-text">
-                  <h5>Outwear</h5>
+                  <h5 style="text-transform:uppercase">{{ item.item_name }}</h5>
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text">{{ item.title }}</a>
+                    <a href="" class="">{{ item.title }}</a>
                   </strong>
                 </h5>
-
-                <h4 class="font-weight-bold blue-text">
+                <table class="table table-striped table-sm">
+                  {% comment %} <tr>
+                    <th style="text-align:right">SERIAL NO</th>
+                    <td style="text-align:left">{{ item.item_serial_num }}</td>
+                  </tr> {% endcomment %}
+                  <tr>
+                    <th style="text-align:right">REMARK</th>
+                    <td style="text-align:left">{{ item.remarks }}</td>
+                  </tr>
+                  <tr>
+                    <th style="text-align:right">LOCATION</th>
+                    <td style="text-align:left">{{ item.location }}</td>
+                  </tr>
+                  <tr>
+                    <th style="text-align:right">TYPE</th>
+                    <td style="text-align:left">{{ item.item_type }}</td>
+                  </tr>
+                  {% comment %} <tr>
+                    <th style="text-align:right">Model num</th>
+                    <td style="text-align:left">{{ item.model_num }}</td>
+                  </tr> {% endcomment %}
+                  {% comment %} <tr>
+                    <th style="text-align:right">prject name</th>
+                    <td style="text-align:left">{{ item.project_name }}</td>
+                  </tr> {% endcomment %}
+                  
+                  {% comment %} <tr>
+                    <th style="text-align:right">calibration date</th>
+                    <td style="text-align:left">{{ item.calibration_date }}</td>
+                  </tr> {% endcomment %}
+                  <tr>
+                    <td colspan="2">
+                      <a href="{{ item.get_absolute_url }}" class="btn btn-primary btn-sm">View Item</a>
+                </table>
                 
-                  <br>Remark:{{ item.remarks }}
-                  <br>Added:{{ item.added_ts }}
-                  <br>Qty:{{ item.quantity }}
-                  <br>Location:{{ item.location }}
-                  <br>Type:{{ item.item_type }}
-                  <br>Item name{{ item.item_name }}
-                  <br>Model num:{{ item.model_num }}
-                  <br>prject name{{ item.project_name }}
-                  <br>serial no{{ item.item_serial_num }}
-                  <br>calibration date{{ item.calibration_date }}
-                
-                </h4>
-
               </div>
               <!--Card content-->
 
