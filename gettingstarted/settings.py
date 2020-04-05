@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "hello",
-    "core"
+    
+    "core",
+    "crispy_forms"
 ]
 
 MIDDLEWARE = [
@@ -136,3 +137,7 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 SITE_ID = 1
+LOGIN_REDIRECT_URL = "/"
+# CRISPY FORMS
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
