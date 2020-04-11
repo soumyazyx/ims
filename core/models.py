@@ -4,7 +4,6 @@ from django.shortcuts import reverse
 
 
 class Item(models.Model):
-
     LOCATIONS = [
         ("Location1", "Location1"),
         ("Location2", "Location2"),
@@ -23,12 +22,11 @@ class Item(models.Model):
     model_num = models.CharField(max_length=255)
     project_name = models.CharField(max_length=255)
     item_serial_num = models.CharField(max_length=255)
-    # calibration_date = models.DateTimeField()
     calibration_date = models.DateTimeField()
     slug = models.SlugField()
 
     def __str__(self):
-        return self. item_name
+        return self.item_name
 
     def get_absolute_url(self):
         return reverse("core:product", kwargs={
@@ -44,6 +42,7 @@ class Item(models.Model):
         return reverse('core:remove-from-cart', kwargs={
             'slug': self.slug
         })
+
 
 class OrderItem(models.Model):
     user = models.ForeignKey(

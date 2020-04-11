@@ -2,31 +2,44 @@
 
 {% block content %}
   <main>
-    <div class="container">
+    <div class="container-fluid">
       <div class="table-responsive text-nowrap">
-        <table class="table">
-          <thead>
+        <table class="table table-hover table-sm">
+          <thead class="thead-light">
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">item_name</th>
-              <th scope="col">project_name</th>
-              <th scope="col">remarks</th>
-              <th scope="col">Quantity</th>
+              <th>Name</th>
+              <th>Type</th>                
+              <th>Model#</th>
+              <th>Serial#</th>
+              <th>Project</th>
+              <th>Location</th>
+              <!-- <th>Added On</th>
+              <th>Calibrated On</th> -->
+              <th>Remarks</th>
+              <th>Quantity</th>
+              <!-- <th>Slug</th> -->
             </tr>
           </thead>
           <tbody>
           {% for order_item in object.items.all %}
           <tr>
-            <th scope="row"> {{ forloop.counter }}</th>
             <td>{{ order_item.item.item_name }}</td>
+            <td>{{ order_item.item.item_type }}</td>
+            <td>{{ order_item.item.model_num }}</td>
+            <td>{{ order_item.item.item_serial_num }}</td>
             <td>{{ order_item.item.project_name }}</td>
+            <td>{{ order_item.item.location }}</td>
             <td>{{ order_item.item.remarks }}</td>
+            
             <td>
               <a href="{% url 'core:remove-single-item-from-cart' order_item.item.slug %}">
                 <i class="fas fa-minus mr-2"></i></a>
               {{ order_item.quantity }}
               <a href="{% url 'core:add-to-cart' order_item.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
               
+              <a style="color:red" href="{% url 'core:remove-from-cart' order_item.item.slug %}">
+                <i class="fas fa-trash float-right"></i>
+              </a>
             </td>
           </tr>
           {% empty %}
@@ -41,9 +54,10 @@
           {% endfor %}
           {% if object.items.all.count > 0 %}
           <tr>
-            <td colspan="5">
-              <a class="btn btn-warning float-right ml-2" href="/checkout">Proceed to checkout</a>
-              <a class="btn btn-primary float-right" href="/">Continue shopping</a>
+            <td colspan="8">
+              <a class="btn btn-sm btn-success float-right ml-2" href="/add-to-inventory">Add to inventory</a>
+              <a class="btn btn-sm btn-danger float-right ml-2" href="/delete-from-inventory">Delete from inventory</a>
+              <a class="btn btn-sm btn-primary float-left" href="/">Continue shopping!</a>
             </td>
           </tr>
           {% endif %}
