@@ -36,15 +36,15 @@ class ItemDetailView(DetailView):
 
 @login_required
 def AddNewItemView(request):
-    form = AddItemForm(request.POST or None)
+    form = AddItemForm(request.POST)
     if form.is_valid():
         form.save()
         return redirect("core:home")
-
+    else:
+        pass
     context = {
         'form': form
     }
-
     return render(request, "item/add_new_item.html", context)
 
 
