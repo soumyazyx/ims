@@ -5,7 +5,8 @@
     <div class="container">
       <div class="row">
         <div class="col-6 offset-3"
-        
+        {{ form.non_field_errors }}
+        {{ form.errors }}
           <form method="POST">
             {% csrf_token %}
             {{ form|crispy }}
